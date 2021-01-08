@@ -15,10 +15,10 @@ it "returns a 200 response" do
   get :home
   expect(response).to have_http_status "200"
   end
-  # タイトルのテスト
+  # タイトルがベースタイトルのテスト
  it "has title 'Ruby on Rails Tutorial Sample App'" do
    get :home
-      assert_select "title", "Home | #{base_title}"
+      assert_select "title", "#{base_title}"
      end
   end
 
