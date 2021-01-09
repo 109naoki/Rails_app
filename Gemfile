@@ -16,7 +16,6 @@ group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails', '~> 4.11'
-
 end
 
 group :development do
@@ -32,9 +31,10 @@ group :test do
   gem 'minitest',                 '5.10.3'
   gem 'minitest-reporters',       '1.1.14'
   gem 'guard',                    '2.16.2'
-  gem 'guard-minitest',           '2.4.4'
-  gem 'capybara', '~> 2.15.2'
-  
+  # gem 'guard-minitest',           '2.4.4'
+  # gem 'capybara', '~> 2.15.2'
+  gem 'capybara'
+  gem 'webdrivers'
 end
 
 group :production do
