@@ -1,61 +1,41 @@
 require 'rails_helper'
 
-RSpec.describe StaticPagesController, type: :controller do
-  render_views
-  
-  let(:base_title) { 'Ruby on Rails Tutorial Sample App' }
-  describe "#home" do
- # 正常にレスポンスを返すこと
- it "responds successfully" do
- get :home
- expect(response).to be_success
+RSpec.describe StaticPagesController, type: :request do
+  context 'GET #home' do
+    before { get root_path }
+    it 'responds successfully' do
+      expect(response).to have_http_status 200
+    end
+    it "has title 'Ruby on Rails Tutorial Sample App'" do
+      expect(response.body).to include 'Ruby on Rails Tutorial Sample App'
+      expect(response.body).to_not include '| Ruby on Rails Tutorial Sample App'
+    end
   end
-# 200レスポンスを返すこと
-it "returns a 200 response" do
-  get :home
-  expect(response).to have_http_status "200"
+  context 'GET #help' do
+    before { get help_path }
+    it 'responds successfully' do
+      expect(response).to have_http_status 200
+    end
+    it "has title 'Home | Ruby on Rails Tutorial Sample App'" do
+      expect(response.body).to include 'Help | Ruby on Rails Tutorial Sample App'
+    end
   end
-  # タイトルがベースタイトルのテスト
- it "has title 'Ruby on Rails Tutorial Sample App'" do
-   get :home
-      assert_select "title", "#{base_title}"
-     end
+  context 'GET #about' do
+    before { get about_path } 
+    it 'responds successfully' do
+      expect(response).to have_http_status 200
+    end
+    it "has title 'Home | Ruby on Rails Tutorial Sample App'" do
+      expect(response.body).to include 'About | Ruby on Rails Tutorial Sample App'
+    end
   end
-
- describe "help" do
-   #正常にレスポンスを返すこと
-   it "responds successfully" do
-   get :help
-   expect(response).to be_success
+  context 'GET #contact' do
+    before { get contact_path } 
+    it 'responds successfully' do
+      expect(response).to have_http_status 200
+    end
+    it "has title 'Home | Ruby on Rails Tutorial Sample App'" do
+      expect(response.body).to include 'Contact | Ruby on Rails Tutorial Sample App'
+    end
   end
-  # 200レスポンスを返すこと
-  it "returns a 200 response" do
-    get :help
-    expect(response).to have_http_status "200"
-  end
-   # タイトルのテスト
- it "has title 'Ruby on Rails Tutorial Sample App'" do
-   get :help
-      assert_select "title", "Help | #{base_title}"
-     end
- end
- 
- describe "about" do
-   #正常にレスポンスを返すこと
-  it "responds successfully" do
-    get :about
-    expect(response).to be_success
-  end
-  #200レスポンスを返すこと
-  it "returns a 200 response" do
-    get :about
-    expect(response).to have_http_status "200"
-  end
-   # タイトルのテスト
- it "has title 'Ruby on Rails Tutorial Sample App'" do
-   get :about
-      assert_select "title", "About | #{base_title}"
-     end
-  end
- end
-
+end
