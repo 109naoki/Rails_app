@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',        '5.1.6'
+gem 'bcrypt',         '3.1.13'
 gem 'bootstrap-sass', '3.3.7'
 gem 'puma',         '3.9.1'
 gem 'sass-rails',   '5.0.6'
@@ -16,6 +17,7 @@ group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails', '~> 4.11'
+  gem 'shoulda-matchers'
 end
 
 group :development do
